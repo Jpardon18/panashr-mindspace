@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panashr Mindspace - Global Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        },
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .subject-math {
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .subject-bio {
+            border-left: 4px solid #10b981;
+        }
+        
+        .subject-chem {
+            border-left: 4px solid #8b5cf6;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-200">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-dark-800/80 backdrop-blur-md border-b border-gray-200 dark:border-dark-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-xl">PM</div>
+                        <span class="ml-3 text-xl font-semibold dark:text-white">Panashr Mindspace</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#home" class="px-3 py-2 rounded-md text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-100/50 dark:bg-primary-900/20">Home</a>
+                            <a href="#features" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Features</a>
+                            <a href="#subjects" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Subjects</a>
+                            <a href="#community" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Community</a>
+                            <a href="#pricing" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Pricing</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button type="button" class="p-1 rounded-full text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 focus:outline-none">
+                            <span class="sr-only">Toggle dark mode</span>
+                            <i class="fas fa-moon dark:hidden" id="dark-mode-toggle"></i>
+                            <i class="fas fa-sun hidden dark:block" id="light-mode-toggle"></i>
+                        </button>
+                        <button class="ml-3 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
+                            Sign In
+                        </button>
+                        <button class="ml-3 bg-secondary-600 hover:bg-secondary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
+                            Join Free
+                        </button>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars block" id="menu-open"></i>
+                        <i class="fas fa-times hidden" id="menu-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-primary-600 dark:text-primary-400 bg-primary-100/50 dark:bg-primary-900/20">Home</a>
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Features</a>
+                <a href="#subjects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Subjects</a>
+                <a href="#community" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Community</a>
+                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Pricing</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200 dark:border-dark-700">
+                <div class="flex items-center px-5">
+                    <button class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium w-full transition duration-150 ease-in-out">
+                        Sign In
+                    </button>
+                    <button class="ml-3 bg-secondary-600 hover:bg-secondary-700 text-white px-4 py-2 rounded-md text-sm font-medium w-full transition duration-150 ease-in-out">
+                        Join Free
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-12 md:pt-32 md:pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+                    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+                        <span class="block">Empower Your</span>
+                        <span class="block text-primary-600">Academic Journey</span>
+                    </h1>
+                    <p class="mt-3 text-base text-gray-500 dark:text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                        Join Panashr Mindspace - the global learning hub connecting students in Mathematics, Biology, and Chemistry. Collaborate, learn, and grow together in our dynamic digital environment.
+                    </p>
+                    <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                            <div class="rounded-md shadow">
+                                <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10">
+                                    Get Started
+                                </a>
+                            </div>
+                            <div class="mt-3 sm:mt-0 sm:ml-3">
+                                <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-primary-200 dark:text-primary-300 dark:bg-primary-900/30 dark:hover:bg-primary-900/50 md:py-4 md:text-lg md:px-10">
+                                    Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+                    <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+                        <div class="relative block w-full bg-white dark:bg-dark-800 rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                            <img class="w-full" src="https://images.unsplash.com/photo-1581094794329-c811329a6a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Students learning together">
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary-600/30 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <p class="text-white text-lg font-semibold">Join 50,000+ students worldwide</p>
+                                <div class="mt-2 flex items-center">
+                                    <div class="flex -space-x-2 overflow-hidden">
+                                        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://randomuser.me/api/portraits/women/12.jpg" alt="">
+                                        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                                        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://randomuser.me/api/portraits/women/45.jpg" alt="">
+                                        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://randomuser.me/api/portraits/men/76.jpg" alt="">
+                                    </div>
+                                    <p class="ml-3 text-white text-sm">and many more...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-12 bg-gray-50 dark:bg-dark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-primary-600 dark:text-primary-400 font-semibold tracking-wide uppercase">Features</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                    Everything you need to excel
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400 lg:mx-auto">
+                    Our platform combines cutting-edge technology with proven learning methodologies.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="bg-white dark:bg-dark-700 overflow-hidden shadow rounded-lg card-hover">
+                        <div class="p-5">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 bg-primary-500/10 rounded-md p-3">
+                                    <i class="fas fa-robot text-primary-600 dark:text-primary-400 text-xl"></i>
+                                </div>
+                                <div class="ml-5 w-0 flex-1">
+                                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">AI-Powered Tutoring</h3>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">
+                                    Get instant, accurate explanations for challenging questions with our integrated AI assistant.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-700 overflow-hidden shadow rounded-lg card-hover">
+                        <div class="p-5">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 bg-secondary-500/10 rounded-md p-3">
+                                    <i class="fas fa-users text-secondary-600 dark:text-secondary-400 text-xl"></i>
+                                </div>
+                                <div class="ml-5 w-0 flex-1">
+                                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">Interactive Group Chats</h3>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">
+                                    Engage in real-time subject-specific discussions to exchange ideas and study collaboratively.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-700 overflow-hidden shadow rounded-lg card-hover">
+                        <div class="p-5">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 bg-green-500/10 rounded-md p-3">
+                                    <i class="fas fa-trophy text-green-600 dark:text-green-400 text-xl"></i>
+                                </div>
+                                <div class="ml-5 w-0 flex-1">
+                                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">Gamified Learning</h3>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">
+                                    Take quizzes, earn badges, and climb leaderboards to stay motivated and track progress.
+                                </p>
+                            </div>
+                        </div>
